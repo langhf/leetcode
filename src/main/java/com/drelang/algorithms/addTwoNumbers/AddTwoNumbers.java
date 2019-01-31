@@ -17,29 +17,23 @@ package com.drelang.algorithms.addTwoNumbers;
   */
 public class AddTwoNumbers {
     public ListNode addTwoNumbers(ListNode l1, ListNode l2) {
-        ListNode result = new ListNode(0);
-        ListNode re = result;
-        int c = 0;
-        while (l1 != null || l2 != null) {
-            if (l1 == null){
-                result = l2;
-                break;
-            }
-            if (l2 == null) {
-                result = l1;
-                break;
-            }
-            int sum = l1.val + l2.val + c;
-            result.val = sum % 10;
-            c = sum/10;
-            result.next = new ListNode(5);
-            result = result.next;
-            l1 = l1.next;
-            l2 = l2.next;
+        ListNode dummyHead = new ListNode(0);
+        ListNode curr=dummyHead, p=l1, q=l2;
+        int carry = 0;
+        while( p != null ||  q != null) {
+            int x = (p != null) ? p.val : 0;
+            int y = (q != null) ? q.val : 0;
+            int sum = x + y + carry;
+            curr.next = new ListNode(sum % 10);
+            curr = curr.next;
+            carry = sum / 10;
+            // 此处注意不能判断 p.next , 因为 p 为 null 的话会引发空指针错误
+            if(p != null) p = p.next;
+            if(q != null) q = q.next;
         }
-        if(c == 1) {
-            result.val = c;
+        if(carry > 0) {
+            curr.next = new ListNode(carry);
         }
-        return re;
+        return dummyHead.next;
     }
 }
