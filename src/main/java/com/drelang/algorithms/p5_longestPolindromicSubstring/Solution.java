@@ -1,13 +1,24 @@
-package com.drelang.algorithms.p409_longestPalindrome;
+package com.drelang.algorithms.p5_longestPolindromicSubstring;
 
 /**
- * 动态编程， 贪婪法
- * Created by Drelang on 2019/02/03 14:12
+ * Given a string s, find the longest palindromic substring in s. You may assume that the maximum length of s is 1000.
+ *
+ * Example 1:
+ *
+ * Input: "babad"
+ * Output: "bab"
+ * Note: "aba" is also a valid answer.
+ * Example 2:
+ *
+ * Input: "cbbd"
+ * Output: "bb"
+ *
+ * Created by Drelang on 2019/05/20 21:32
  */
-public class SolutionB extends Solution {
+
+class Solution {
     private int start;
     private int maxLen;
-    @Override
     String longestPalindrome(String s) {
         int n = s.length();
         if(n < 2) return s;
@@ -32,3 +43,4 @@ public class SolutionB extends Solution {
         }
     }
 }
+
